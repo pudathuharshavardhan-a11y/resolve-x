@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="Resolve-X incident management workspace">
+<title>Resolve-X — Incident Operations</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" aria-label="Resolve-X home"><span class="brand-mark">R<span>×</span></span><span class="brand-name">resolve<span>-x</span><small>INCIDENT OPERATIONS</small></span></a>
+    <div class="workspace"><span class="workspace-icon">✦</span><span><b>Workspace</b><small>Personal workspace</small></span><span class="chevron">⌄</span></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav class="nav">
+      <button class="nav-link active" data-view="overview"><span class="nav-icon">▦</span> Overview</button>
+      <button class="nav-link" data-view="assistant"><span class="nav-icon">✧</span> Incident reporter</button>
+      <button class="nav-link" data-view="livechat"><span class="nav-icon">◌</span> Live chat <span class="nav-tag" id="chatTag">LIVE</span></button>
+      <button class="nav-link" data-view="incidents"><span class="nav-icon">◈</span> Incidents <span class="nav-count" id="navCount">0</span></button>
+      <button class="nav-link" data-view="analytics"><span class="nav-icon">▥</span> Analytics</button>
+      <button class="nav-link" data-view="reports"><span class="nav-icon">▤</span> Reports</button>
+    </nav>
+    <div class="nav-label tools-label">TOOLS</div>
+    <nav class="nav">
+      <button class="nav-link" data-view="playbook"><span class="nav-icon">☷</span> Resolution playbook</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="help-card"><span class="help-icon">?</span><b>Need a hand?</b><p>Explore the incident workflow and learn how to use Resolve-X.</p><button data-view="playbook">View quick guide <span>↗</span></button></div>
+      <div class="profile"><div class="avatar">H</div><div><b>Harshavardhan</b><small>Project workspace</small></div><button class="dots" aria-label="Profile options">···</button></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+      <div class="breadcrumbs"><span>Workspace</span><i>/</i><b id="crumb">Overview</b></div>
+      <div class="top-actions"><span class="system-status" id="systemStatus"><i></i> Connected</span><button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☼</button><button class="icon-btn" id="notifyBtn" title="Enable incident notifications" aria-label="Enable incident notifications">♧<em></em></button><div class="top-avatar">H</div></div>
+    </header>
+
+    <section class="page active" id="view-overview">
+      <div class="page-heading"><div><div class="eyebrow">MONDAY, INCIDENT CONTROL</div><h1>Good to see you, Harshavardhan <span class="wave">✦</span></h1><p>Here's what's happening across your incident workspace.</p></div><button class="primary-btn" data-view="assistant"><span>＋</span> New incident</button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Total incidents</span><span class="stat-icon purple">◈</span></div><div class="stat-value" id="totalStat">0</div><div class="stat-foot"><span class="muted">All recorded incidents</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Open incidents</span><span class="stat-icon orange">◷</span></div><div class="stat-value" id="openStat">0</div><div class="stat-foot"><span class="status-dot orange-dot"></span><span class="muted">Awaiting resolution</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Critical / High</span><span class="stat-icon red">⚠</span></div><div class="stat-value" id="highStat">0</div><div class="stat-foot"><span class="muted">Needs attention</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Resolved</span><span class="stat-icon green">✓</span></div><div class="stat-value" id="resolvedStat">0</div><div class="stat-foot"><span class="muted">Marked as resolved</span></div></article>
+      </div>
+      <div class="content-grid">
+        <article class="panel trend-panel"><div class="panel-head"><div><h2>Incident activity</h2><p>Overview of your saved incidents</p></div><span class="period-pill">All time <span>⌄</span></span></div><div class="chart-wrap"><div class="y-labels"><span>4</span><span>3</span><span>2</span><span>1</span><span>0</span></div><div class="bar-chart" id="activityChart"><div class="empty-chart">Add incidents to see activity here.</div></div></div><div class="chart-legend"><span><i class="legend-dot"></i> Incidents created</span><span class="chart-note">Live shared incident data</span></div></article>
+        <article class="panel severity-panel"><div class="panel-head"><div><h2>Severity breakdown</h2><p>Current incident distribution</p></div><button class="more-btn" data-view="analytics">···</button></div><div class="donut-area"><div class="donut" id="severityDonut"><div><b id="donutTotal">0</b><small>Incidents</small></div></div><div class="severity-legend"><div><i class="sev-dot critical"></i><span>Critical</span><b id="criticalCount">0</b></div><div><i class="sev-dot high"></i><span>High</span><b id="highCount">0</b></div><div><i class="sev-dot medium"></i><span>Medium</span><b id="mediumCount">0</b></div><div><i class="sev-dot low"></i><span>Low</span><b id="lowCount">0</b></div></div></div></article>
+      </div>
+      <article class="panel recent-panel"><div class="panel-head"><div><h2>Recent incidents</h2><p>Latest activity in your workspace</p></div><button class="text-btn" data-view="incidents">View all incidents <span>→</span></button></div><div class="table-scroll"><table><thead><tr><th>INCIDENT</th><th>SEVERITY</th><th>STATUS</th><th>CREATED</th><th></th></tr></thead><tbody id="recentRows"><tr><td colspan="5" class="empty-cell">No incidents yet. Start by creating your first incident.</td></tr></tbody></table></div></article>
+      <div class="disclaimer">Resolve-X live workspace · Anyone can report without creating an account. Your private admin device receives new-incident alerts.</div>
+      <div class="admin-banner" id="adminBanner" hidden><span>🔔</span><div><b>Admin alerts enabled</b><small>This device will be informed when someone reports a new incident.</small></div><button id="enableNotifyInline" class="secondary-btn">Enable notifications</button></div>
+    </section>
+
+    <section class="page" id="view-assistant">
+      <div class="page-heading"><div><div class="eyebrow">INCIDENT INTAKE</div><h1>Incident assistant</h1><p>Describe the issue. The guided assistant will help structure the report.</p></div><span class="prototype-pill"><i></i> Guided demo</span></div>
+      <div class="assistant-layout">
+        <article class="panel chat-panel"><div class="chat-head"><div class="bot-avatar">✦</div><div><b>Resolve-X Assistant</b><small><i></i> Incident intake · Ready</small></div><button class="reset-btn" id="resetChat">↻ Restart</button></div><div class="chat-messages" id="chatMessages" aria-live="polite"></div><form class="chat-compose" id="chatForm"><input id="chatInput" placeholder="Type your answer..." autocomplete="off" required><button class="send-btn" type="submit" aria-label="Send answer">↑</button></form><div class="chat-foot">Demo assistant · Don't enter passwords, tokens, or sensitive data.</div></article>
+        <aside class="panel context-panel"><div class="context-head"><span class="context-icon">☷</span><div><b>Incident details</b><small>Updates as you answer</small></div></div><div id="contextFields" class="context-fields"><div class="context-empty">Your answers will appear here as you work through the conversation.</div></div><div class="progress-box"><div class="progress-head"><span>Intake progress</span><b id="progressText">0%</b></div><div class="progress-track"><i id="progressBar"></i></div><small id="progressHint">Answer the first question to begin.</small></div></aside>
+      </div>
+    </section>
+
+    <section class="page" id="view-incidents">
+      <div class="page-heading"><div><div class="eyebrow">TRACK & MANAGE</div><h1>Incidents</h1><p>Review, search, and update the incidents you've recorded.</p></div><button class="primary-btn" data-view="assistant">＋ New incident</button></div>
+      <article class="panel list-panel"><div class="list-toolbar"><div class="search-wrap"><span>⌕</span><input id="incidentSearch" placeholder="Search incidents..." aria-label="Search incidents"></div><select id="severityFilter" aria-label="Filter by severity"><option value="all">All severities</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option>Open</option><option>In progress</option><option>Resolved</option></select></div><div class="table-scroll"><table><thead><tr><th>INCIDENT</th><th>APPLICATION</th><th>SEVERITY</th><th>STATUS</th><th>CREATED</th><th>ACTION</th></tr></thead><tbody id="incidentRows"><tr><td colspan="6" class="empty-cell">No incidents found.</td></tr></tbody></table></div></article>
+    </section>
+
+
+    <section class="page" id="view-livechat">
+      <div class="page-heading"><div><div class="eyebrow">REAL-TIME COMMUNICATION</div><h1>Live incident chat</h1><p>Messages are shared instantly between the reporter and your response team.</p></div><span class="prototype-pill live-pill"><i></i> Live connection</span></div>
+      <div class="chat-room-layout">
+        <article class="panel room-list">
+          <div class="room-head"><b>Open incidents</b><span id="roomCount">0</span></div>
+          <div id="roomList" class="room-list-items"><div class="context-empty">Create an incident to start a chat.</div></div>
+        </article>
+        <article class="panel live-room">
+          <div class="live-room-head">
+            <div><b id="roomTitle">Select an incident</b><small id="roomSub">Choose an incident to open its real-time conversation.</small></div>
+            <span class="online-badge" id="roomOnline">● Live</span>
+          </div>
+          <div id="roomMessages" class="room-messages"><div class="context-empty">Messages will appear here.</div></div>
+          <form id="roomForm" class="room-compose">
+            <input id="roomInput" placeholder="Write a message..." autocomplete="off" disabled>
+            <button class="send-btn" type="submit" disabled>↑</button>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="view-analytics">
+      <div class="page-heading"><div><div class="eyebrow">INSIGHTS</div><h1>Analytics</h1><p>A live view of incidents shared across your connected devices.</p></div><button class="secondary-btn" id="analyticsExport">↓ Export CSV</button></div>
+      <div class="stats-grid compact-stats"><article class="stat-card"><div class="stat-top"><span>Mean severity score</span><span class="stat-icon purple">⌁</span></div><div class="stat-value" id="meanSeverity">—</div><div class="stat-foot"><span class="muted">1 = Low · 4 = Critical</span></div></article><article class="stat-card"><div class="stat-top"><span>Resolution rate</span><span class="stat-icon green">✓</span></div><div class="stat-value" id="resolutionRate">0%</div><div class="stat-foot"><span class="muted">Resolved / total</span></div></article></div>
+      <div class="content-grid"><article class="panel"><div class="panel-head"><div><h2>Severity distribution</h2><p>Number of incidents by severity</p></div></div><div id="analyticsBars" class="horizontal-bars"><div class="empty-chart">No data to display yet.</div></div></article><article class="panel"><div class="panel-head"><div><h2>Status overview</h2><p>Current workflow state</p></div></div><div id="statusBars" class="horizontal-bars"><div class="empty-chart">No data to display yet.</div></div></article></div>
+    </section>
+
+    <section class="page" id="view-reports">
+      <div class="page-heading"><div><div class="eyebrow">DOCUMENTATION</div><h1>Reports</h1><p>Export incident records for sharing or further analysis.</p></div></div>
+      <div class="report-grid"><article class="panel export-card"><div class="export-icon purple">⇩</div><h2>Incident CSV</h2><p>Download all saved incidents as a CSV file that opens in spreadsheet applications.</p><button class="primary-btn" id="exportCsv">Download CSV <span>↗</span></button></article><article class="panel export-card"><div class="export-icon blue">{ }</div><h2>JSON backup</h2><p>Export the complete incident records as a JSON file for backup or development.</p><button class="secondary-btn" id="exportJson">Download JSON <span>↗</span></button></article></div>
+      <div class="notice"><b>Live workspace</b><p>Incidents are stored on the Resolve-X server so a report created on one phone can appear on your admin device. Exported files may contain incident details; review them before sharing.</p></div>
+    </section>
+
+    <section class="page" id="view-playbook">
+      <div class="page-heading"><div><div class="eyebrow">QUICK REFERENCE</div><h1>Resolution playbook</h1><p>A simple workflow for investigating a software incident.</p></div></div>
+      <div class="playbook-grid"><article class="panel play-step"><span class="step-num">01</span><h2>Identify</h2><p>Record the affected application, symptoms, start time, and environment. Capture the exact error message if available.</p></article><article class="panel play-step"><span class="step-num">02</span><h2>Assess impact</h2><p>Determine how many users are affected and whether critical business functions are unavailable.</p></article><article class="panel play-step"><span class="step-num">03</span><h2>Prioritise</h2><p>Use the suggested severity as a starting point. A responsible support person should confirm priority.</p></article><article class="panel play-step"><span class="step-num">04</span><h2>Investigate & resolve</h2><p>Review recent changes, check logs, test a safe fix, and document the outcome before marking an incident resolved.</p></article></div>
+      <div class="notice"><b>Prototype limitation</b><p>The included assistant is a guided, rule-based demo. It is not connected to a live AI model, monitoring service, or shared database.</p></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="/socket.io/socket.io.js"></script><script src="script.js"></script>
+</body>
+</html>
